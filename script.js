@@ -109,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(envelope.classList.contains('is-open')) return;
         envelope.classList.add('is-open');
         
-        // (Music naturally starts due to the global click interaction listener)
-
         setTimeout(() => {
             nextScreen(2);
         }, 1500); 
