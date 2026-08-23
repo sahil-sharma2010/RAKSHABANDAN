@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Raksha Bandhan ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Premium Music Widget (No Volume Slider) -->
+    <div id="music-widget" class="music-widget">
+        <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Toggle Music">
+            <div class="music-waves">
+                <span></span><span></span><span></span>
+            </div>
+            <!-- Icon will be dynamically updated by JavaScript -->
+            <i class="fas fa-music z-icon"></i>
+        </button>
+    </div>
+    
+    <!-- CORRECTED AUDIO TAG -->
+    <audio id="backgroundMusic" src="assets/rakhi.mp3" loop preload="auto" autoplay></audio>
+
+    <!-- Global Particles Container -->
+    <div id="particles-container"></div>
+
+    <div id="app-container">
+        
+        <!-- PAGE 1: ENVELOPE -->
+        <section class="screen active" id="screen-1">
+            <h1 class="cinzel text-gold text-glow">Happy Raksha Bandhan ❤️</h1>
+            <p class="subtitle poppins">A Little Surprise For My Sister</p>
+            
+            <div class="envelope-wrapper">
+                <div class="envelope" id="envelope">
+                    <div class="flap top-flap"></div>
+                    <div class="flap right-flap"></div>
+                    <div class="flap bottom-flap"></div>
+                    <div class="flap left-flap"></div>
+                    <div class="heart-seal pulse-heart"><i class="fas fa-heart"></i></div>
+                    <div class="letter-preview"></div>
+                </div>
+            </div>
+            
+            <button class="btn primary-btn mt-2" id="open-letter-btn">Open My Letter 💌</button>
+        </section>
+
+        <!-- PAGE 2: PREMIUM LETTER -->
+        <section class="screen hidden" id="screen-2">
+            <h2 class="cinzel text-gold text-glow mb-2">A Letter From Your Brother ❤️</h2>
+            
+            <div class="paper-letter scrollable-content">
+                <div class="letter-content great-vibes">
+                    <p id="display-sister-name" class="greeting">My Dearest Sister, ❤️</p>
+                    
+                    <p>Today is Raksha Bandhan, but for me, this day is more than just tying a Rakhi.</p>
+                    
+                    <p>It reminds me how lucky I am to have a sister like you in my life. You are the person who can make ordinary moments feel special just by being there. From our silly fights and endless teasing to the moments when we quietly support each other — every little memory with you means a lot to me. 🥹❤️</p>
+                    
+                    <p>We may fight over the smallest things, annoy each other, and sometimes pretend that we don't care… but deep down, you know I'll always be there for you.</p>
+                    
+                    <p>Whenever you need someone to listen, someone to stand beside you, or simply someone to annoy you again 😄 — your brother will always be there.</p>
+                    
+                    <p>No matter how much we grow, where life takes us, or how busy we become, I never want this beautiful bond between us to change.</p>
+                    
+                    <p>This Rakhi, I don't promise that I'll never tease you… because that's impossible. 😂</p>
+                    
+                    <p>But I do promise one thing:<br><strong>Whenever you need me, I'll always have your back. ❤️</strong></p>
+                    
+                    <p>You are not just my sister. You are a beautiful part of my life, one of my biggest blessings, and someone I will always protect and love.</p>
+                    
+                    <p>So today, as you tie this Rakhi on my wrist, remember that this little thread carries something much bigger — a lifetime of memories, love, laughter, and an unbreakable bond between a brother and his sister. 🎀❤️</p>
+                    
+                    <p class="mt-2 text-center text-pink font-bold" style="font-size: 2.2rem;">Happy Raksha Bandhan, My Beautiful Sister! 🌸</p>
+                    <p class="text-center">May you always keep smiling, keep shining, and achieve everything you dream of.</p>
+                    
+                    <div class="signature-block">
+                        <p>With endless love,</p>
+                        <p id="display-brother-name" class="signature text-gold">Your Brother ❤️</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn primary-btn mt-3" onclick="nextScreen(3)">Continue To Our Memories ❤️</button>
+        </section>
+
+        <!-- PAGE 3: MEMORY BOX -->
+        <section class="screen hidden" id="screen-3">
+            <h2 class="cinzel text-gold text-glow">Open Our Memory Box 📦❤️</h2>
+            <p class="subtitle poppins">Some memories never grow old...</p>
+
+            <!-- 3D Box View -->
+            <div id="memory-box-intro">
+                <div class="chest-box" id="chest-box" onclick="openMemoryBox()">
+                    <div class="chest-lid"></div>
+                    <div class="chest-body">
+                        <div class="chest-lock pulse-heart"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="chest-glow"></div>
+                </div>
+                <button class="btn primary-btn mt-3" id="open-box-btn" onclick="openMemoryBox()">Open Our Memory Box 💌</button>
+            </div>
+
+            <!-- Polaroid Carousel View -->
+            <div id="memory-carousel" class="hidden">
+                <p class="memory-counter poppins">Memory <span id="current-mem-idx">1</span> of 10</p>
+                
+                <div class="polaroid-container" id="polaroid-container">
+                    <!-- Cards injected via JS -->
+                </div>
+
+                <div class="carousel-nav mt-2">
+                    <button class="btn outline-btn" onclick="prevMemory()">← Previous</button>
+                    <button class="btn outline-btn" onclick="nextMemory()">Next →</button>
+                </div>
+                
+                <button class="btn primary-btn mt-3" id="finish-memory-btn" style="display:none;" onclick="nextScreen(4)">Keep These Memories Forever ❤️</button>
+            </div>
+        </section>
+
+        <!-- PAGE 4: RAKHI DESIGNER -->
+        <section class="screen hidden" id="screen-4">
+            <h2 class="cinzel text-gold text-glow">Design Your Rakhi 🎀</h2>
+            <p class="subtitle poppins">Create a unique Rakhi made specially for your sister.</p>
+            
+            <!-- Rakhi Collections (Thumbnails) -->
+            <div class="collections-wrapper">
+                <p class="collection-title poppins">Rakhi Collection</p>
+                <div class="collection-scroll">
+                    <button class="collection-thumb" onclick="applyPreset('#e63946', 'traditional', 'pearls', 1.0)">❤️ Classic</button>
+                    <button class="collection-thumb" onclick="applyPreset('#ffb6c1', 'flower', 'kundan', 1.1)">🌸 Floral</button>
+                    <button class="collection-thumb" onclick="applyPreset('#ffd700', 'crown', 'diamonds', 1.1)">👑 Royal</button>
+                    <button class="collection-thumb" onclick="applyPreset('#ffffff', 'traditional', 'pearls', 0.9)">💎 Pearl</button>
+                    <button class="collection-thumb" onclick="applyPreset('#9d4edd', 'butterfly', 'stars', 1.0)">🦋 Butterfly</button>
+                    <button class="collection-thumb" onclick="applyPreset('#ff4d6d', 'infinity', 'hearts', 1.1)">♾️ Infinity</button>
+                    <button class="collection-thumb" onclick="applyPreset('#ff0055', 'heart', 'hearts', 1.0)">💕 Heart</button>
+                </div>
+            </div>
+
+            <div class="designer-layout mt-2">
+                <!-- Rakhi Preview -->
+                <div class="preview-container glass-card premium-preview">
+                    <div class="canvas-glow"></div>
+                    <canvas id="rakhi-canvas" width="400" height="400"></canvas>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls-container glass-card">
+                    <div class="control-group">
+                        <label>🎨 Colors</label>
+                        <div class="color-options">
+                            <div class="color-swatch active" style="background: #ff4d6d;" data-color="#ff4d6d"></div>
+                            <div class="color-swatch" style="background: #e63946;" data-color="#e63946"></div>
+                            <div class="color-swatch" style="background: #9d4edd;" data-color="#9d4edd"></div>
+                            <div class="color-swatch" style="background: #ffd700;" data-color="#ffd700"></div>
+                            <div class="color-swatch" style="background: #2a9d8f;" data-color="#2a9d8f"></div>
+                            <div class="color-swatch" style="background: #ffffff;" data-color="#ffffff"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>⭕ Shape</label>
+                        <select id="shape-select" class="premium-select">
+                            <option value="traditional">Traditional Round</option>
+                            <option value="flower">Lotus Flower</option>
+                            <option value="heart">Love Heart</option>
+                            <option value="diamond">Royal Diamond</option>
+                            <option value="butterfly">Cute Butterfly</option>
+                            <option value="infinity">Forever Infinity</option>
+                            <option value="crown">Royal Crown</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>♡ Pattern</label>
+                        <select id="pattern-select" class="premium-select">
+                            <option value="om">Sacred Om</option>
+                            <option value="pearls">Classic Pearls</option>
+                            <option value="kundan">Royal Kundan</option>
+                            <option value="dots">Elegant Dots</option>
+                            <option value="stars">Twinkling Stars</option>
+                            <option value="hearts">Tiny Hearts</option>
+                            <option value="diamonds">Diamonds</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>↕ Size</label>
+                        <input type="range" id="size-slider" min="0.6" max="1.4" step="0.1" value="1">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn primary-btn mt-3" id="download-btn">Download My Rakhi ⬇️</button>
+            <button class="btn outline-btn mt-2" onclick="nextScreen(5)">Continue to Reveal ✨</button>
+        </section>
+
+        <!-- PAGE 5: RAKHI REVEAL -->
+        <section class="screen hidden" id="screen-5">
+            <h2 class="cinzel text-gold text-glow">Your Rakhi Is Ready ❤️</h2>
+            <p class="subtitle poppins text-pink font-bold">Made specially for my beautiful sister.</p>
+            
+            <div class="reveal-card glass-card premium-frame mt-2">
+                <img id="reveal-rakhi-img" src="" alt="Your Custom Rakhi" class="floating-rakhi final-rakhi-img">
+            </div>
+            
+            <div class="reveal-text mt-3">
+                <h3 class="great-vibes text-gold" style="font-size: 2.8rem;">One Rakhi.</h3>
+                <h3 class="great-vibes text-pink" style="font-size: 2.8rem;">A thousand memories.</h3>
+                <h3 class="great-vibes text-gold" style="font-size: 2.8rem;">One forever bond.</h3>
+            </div>
+            
+            <button class="btn primary-btn mt-3" onclick="nextScreen(6)">Continue ❤️</button>
+        </section>
+
+        <!-- PAGE 6: FINAL MESSAGE -->
+        <section class="screen hidden" id="screen-6">
+            <h1 class="cinzel text-gold text-glow mb-2">Some Bonds Are Forever ❤️</h1>
+            
+            <div class="glass-card final-card mt-2">
+                <div class="connecting-hearts mb-2">
+                    <i class="fas fa-heart text-pink pulse-heart"></i>
+                    <div class="connecting-thread glow-thread"></div>
+                    <i class="fas fa-heart text-pink pulse-heart"></i>
+                </div>
+                
+                <p class="poppins text-lg mt-2">Years will pass.<br>We will grow older.<br>Life will change.</p>
+                <p class="poppins text-lg mt-1">But no matter where we go,<br>you will always be my sister,<br>and I will always be your brother.</p>
+                <p class="poppins text-gold font-bold mt-2">This Rakhi is just a small reminder<br>of a bond that can never be replaced.</p>
+                
+                <h2 class="great-vibes mt-3 text-pink" style="font-size: 2.8rem;">Happy Raksha Bandhan,<br>My Beautiful Sister! 🌸</h2>
+                
+                <h2 class="great-vibes text-gold mt-2" style="font-size: 2.5rem;">With all my love,</h2>
+                <h2 class="great-vibes text-gold" style="font-size: 2.5rem;" id="final-brother-name">Your Brother</h2>
+            </div>
+            
+            <div class="button-group mt-3">
+                <button class="btn primary-btn" onclick="resetExperience()">Replay Surprise 🔄</button>
+                <button class="btn outline-btn" onclick="goToScreen(4)">Design Rakhi Again 🎀</button>
+            </div>
+
+            <!-- PRESERVED DEVELOPER CREDIT -->
+            <p class="developer-credit">Designed & Developed by Sahil Sharma </p>
+            
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
