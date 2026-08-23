@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- IMPORTANT: Prevent zooming on mobile for an app-like feel -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- PERFECT MOBILE VIEWPORT: Prevents zooming & respects iPhone safe areas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Happy Raksha Bandhan ❤️</title>
     
     <!-- Google Fonts -->
@@ -18,29 +18,31 @@
 </head>
 <body>
     
-    <!-- Premium Music Widget -->
+    <!-- Premium Music Widget (Safe Area Optimized) -->
     <div id="music-widget" class="music-widget">
         <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Toggle Music">
             <div class="music-waves">
                 <span></span><span></span><span></span>
             </div>
-            <i class="fas fa-volume-mute z-icon"></i>
+            <!-- Icon will be dynamically updated by JavaScript -->
+            <i class="fas fa-music z-icon"></i>
         </button>
     </div>
     
     <!-- Auto-on Music -->
     <audio id="backgroundMusic" src="assets/rakhi.mp3" loop preload="auto" autoplay></audio>
 
-    <!-- Global Particles Container -->
+    <!-- Global Particles Container (Overflow hidden strictly) -->
     <div id="particles-container"></div>
 
     <div id="app-container">
         
         <!-- PAGE 1: ENVELOPE -->
         <section class="screen active" id="screen-1">
-            <h1 class="cinzel text-gold text-glow">Happy Raksha Bandhan ❤️</h1>
+            <h1 class="cinzel text-gold text-glow mobile-header">Happy Raksha Bandhan ❤️</h1>
             <p class="subtitle poppins">A Little Surprise For My Sister</p>
             
+            <!-- Scalable Envelope Wrapper to prevent horizontal scroll on tiny phones -->
             <div class="envelope-scale-wrapper">
                 <div class="envelope-wrapper">
                     <div class="envelope" id="envelope">
@@ -140,8 +142,7 @@
             <div class="designer-layout mt-2">
                 <div class="preview-container glass-card premium-preview">
                     <div class="canvas-glow"></div>
-                    <!-- Added inline styles to strictly contain canvas on mobile -->
-                    <canvas id="rakhi-canvas" width="400" height="400" style="width: 100%; max-width: 300px; height: auto;"></canvas>
+                    <canvas id="rakhi-canvas" width="400" height="400" style="width: 100%; max-width: 280px; height: auto;"></canvas>
                 </div>
 
                 <div class="controls-container glass-card">
@@ -239,7 +240,7 @@
             </div>
 
             <!-- PRESERVED DEVELOPER CREDIT -->
-            <p class="developer-credit">Designed & Developed by Sahil Sharma </p>
+            <p class="developer-credit">Designed & Developed by Sahil Sharma ❤️</p>
             
         </section>
 
